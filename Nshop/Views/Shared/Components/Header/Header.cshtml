@@ -1,0 +1,15 @@
+﻿<div class="navigation-bar">
+    <a class="link-home" asp-controller="Home" asp-action="Index"></a>
+    <img id="icon-nshop" src="~/img/N-icon-shop.png">
+    <div class="option-user">
+        <a asp-controller="Home" asp-action="OpenSignUp" class="option signup btn btn-primary">Đăng ký</a>
+        <a asp-controller="Home" asp-action="OpenLogin" class="option btn btn-danger">Đăng nhập</a>
+        <img id="icon-user" class="" src="~/img/avatar.jpg">
+        <span class="name-user">Xin chào, user</span>
+        <a asp-controller="Home" asp-action="OpenProfile" class="option btn btn-light"><i class="bi bi-caret-down-fill"></i></a><!--Để tạm-->
+        <button class="cart option btn btn-outline-danger">
+            <i class="bi bi-cart-fill"></i>
+            <div class="number-order">0</div>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Nshop.Models.Products>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/Productcss.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+    @{
+
+    }
+    <div class="show-product">
+        <div class="Tab-option-product">
+            <div class="fillter-product">
+                <input type="text" class="search-product form-control" placeholder="Search Product ...." />
+                <a class="search-button btn btn-light"><i class="bi bi-search"></i></a>
+                <label>Sắp xếp theo: </label>
+                <select class="form-control" id="order-option">
+                    <option>Price</option>
+                    <option>Product name</option>
+                    <option> Quantity</option>
+                </select>
+                <a class="btn btn-outline-secondary order-button" onclick="buttonOrderBy(this)"><i class="bi bi-caret-down"></i></a>
+            </div>
+            <div class="modify-product">
+                <a asp-action="CreateForm" asp-route-id="@ViewBag.CatalogIDSelecting" class="btn btn-info add-button"><i class="bi bi-plus-circle-dotted"></i>Thêm</a>
+            </div>
+        </div>
+        <ul class="flex-container wrap">
+            @{
+                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+
+            }
+            @foreach (var item in Model)
+            {
+                try
+                {
+                    dictionary = item.Detail.TrimEnd(';').Split(';').ToDictionary(item => item.Split('=')[0], item => item.Split('=')[1]);
+                }
+                catch
+                {
+                    dictionary = null;
+                }
+                <li class="flex-item">
+                    <button class="button-75">-@(item.Discount)%</button>
+                    @if (item.Discount >= 35)
+                    {
+                        <button class="button-49">Sale</button>
+                    }
+                    <div class="flex-component">
+                        <div class="item-image"><img src="@item.ImageLink"></div>
+                        <div class="item-descriptions">
+                            <div class="item-title">@item.ProductName</div>
+                            @if (dictionary != null)
+                            {
+                                <div class="item-info"><b>@dictionary.ElementAt(0).Key</b>:@dictionary.ElementAt(0).Value</div>
+                                <hr class="line">
+                                <div class="item-info"><b>@dictionary.ElementAt(1).Key</b>:@dictionary.ElementAt(1).Value</div>
+                            }
+                            <hr class="line" style="margin-top:45px;">
+                        </div>
+
+                    </div>
+                    <div class="item-price">@(item.Price-item.Price*((decimal)item.Discount/100)) VND </div>
+                    <hr class="line">
+                    <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@item.ProductId" class="button-17 item-detail">Details</a>
+                </li>
+            }
+
+        </ul>
+        <div class="pagination">
+            <div class="button-pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function buttonOrderBy(x) {
+            if (x.innerHTML == '<i class="bi bi-caret-down"></i>') {
+                x.innerHTML = '<i class="bi bi-caret-up"></i>';
+            }
+            else {
+                x.innerHTML = '<i class="bi bi-caret-down"></i>';
+            }
+        }
+    </script>
+
+</body>
+</html>

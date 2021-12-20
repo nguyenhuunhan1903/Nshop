@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Nshop.Models;
 using System;
@@ -12,15 +13,16 @@ namespace Nshop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private NShopContext db = new NShopContext();
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(IEnumerable<Nshop.Models.Products> products)
         {
-            return View();
+            products = db.Products;
+            return View("Index",products);
         }
 
         public IActionResult Privacy()

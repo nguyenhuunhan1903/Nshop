@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<Nshop.Models.Products>
 @{
     ViewData["Title"] = "Home Page";
-    //chú ý truy vấn where khi so sánh với id, id có 4 ký tự, nếu mình so sánh với chuỗi "C1" vẫn được coi là sai, phải dùng startwith
 }
 <!DOCTYPE html>
 <html>
@@ -81,14 +80,32 @@
         <a class="btn btn-light" href="#PC">PC</a>
         <a class="btn btn-light" href="#LAPTOP">Laptop</a>
         <a class="btn btn-light" href="#MONITOR">Màn hình</a>
-        <a class="btn btn-light" href="#KEYBROAD">Bàn phím</a>
-        <a class="btn btn-light" href="#MOUSE">Chuột</a>
-        <a class="btn btn-light" href="#HEADPHONE">Tai nghe</a>
+        <a class="btn btn-light">Bàn phím</a>
+        <a class="btn btn-light">Chuột</a>
+        <a class="btn btn-light">Tai nghe</a>
         <a class="btn btn-light" href="#NETWORK">Thiết bị mạng</a>
         <a class="btn btn-light" href="#OFFICE">Thiết bị văn phòng</a>
     </div>
     <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C2")).OrderByDescending(x => x.Discount).Take(3))
+        <div class="intro-product">
+            <a class="product-detail"></a>
+            <span>Tên sản phẩm</span>
+            <img src="~/img/default-store-350x350.jpg" />
+            <span>giá</span>
+        </div>
+        <div class="intro-product">
+            <a class="product-detail"></a>
+            <span>Tên sản phẩm</span>
+            <img src="~/img/default-store-350x350.jpg" />
+            <span>giá</span>
+        </div>
+        <div class="intro-product">
+            <a class="product-detail"></a>
+            <span>Tên sản phẩm</span>
+            <img src="~/img/default-store-350x350.jpg" />
+            <span>giá</span>
+        </div>
+        @foreach (var p in Model.Where(x => x.CatalogId == "C2" && x.Quantity > 0).OrderByDescending(x => x.Discount).Take(3))
         {
             <div class="intro-product">
                 <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
@@ -103,7 +120,7 @@
         <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C2" class="button-34" id="PC">PC</a>
     </div>
     <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C1")).OrderByDescending(x => x.Discount).Take(3))
+        @foreach (var p in Model.Where(x => x.CatalogId == "C1" && x.Quantity > 0).OrderByDescending(x => x.Discount).Take(3))
         {
             <div class="intro-product">
                 <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
@@ -117,7 +134,7 @@
         <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C1" class="button-34" id="LAPTOP">Laptop</a>
     </div>
     <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C3")).OrderByDescending(x => x.Discount).Take(3))
+        @foreach (var p in Model.Where(x => x.CatalogId == "C3" && x.Quantity > 0).OrderByDescending(x => x.Discount).Take(3))
         {
             <div class="intro-product">
                 <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
@@ -128,10 +145,10 @@
         }
         <!--code -->
         <div class="opacity-style"></div>
-        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C3" class="button-34" id="MONITOR">Màn hình</a>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C3" class="button-34" id="Monitor">Màn hình</a>
     </div>
     <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C4")).OrderByDescending(x => x.Discount).Take(3))
+        @foreach (var p in Model.Where(x => x.CatalogId == "C7" && x.Quantity > 0).OrderByDescending(x => x.Discount).Take(3))
         {
             <div class="intro-product">
                 <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
@@ -140,13 +157,12 @@
                 <span>giá: @p.Price</span>
             </div>
         }
-        <div class="opacity-style">
-
-        </div>
-        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C4" class="button-34" id="KEYBROAD">Bàn phím</a>
-        </div>
+        <!--code -->
+        <div class="opacity-style"></div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C7" class="button-34" id="NETWORK">Thiết bị mạng</a>
+    </div>
     <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C5")).OrderByDescending(x => x.Discount).Take(3))
+        @foreach (var p in Model.Where(x => x.CatalogId == "C8" && x.Quantity > 0).OrderByDescending(x => x.Discount).Take(3))
         {
             <div class="intro-product">
                 <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
@@ -155,54 +171,10 @@
                 <span>giá: @p.Price</span>
             </div>
         }
-        <div class="opacity-style">
-
-        </div>
-        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C5" class="button-34" id="MOUSE">Chuột</a>
-        </div>
-    <div class="Bottom-catagory product-catagory">
-        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C6")).OrderByDescending(x => x.Discount).Take(3))
-        {
-            <div class="intro-product">
-                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
-                <span>@p.ProductName</span>
-                <img src="@p.ImageLink" />
-                <span>giá: @p.Price</span>
-            </div>
-        }
-        <div class="opacity-style">
-
-        </div>
-        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C6" class="button-34" id="HEADPHONE">Tai nghe</a>
-        </div>
-        <div class="Bottom-catagory product-catagory">
-            @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C7")).OrderByDescending(x => x.Discount).Take(3))
-            {
-                <div class="intro-product">
-                    <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
-                    <span>@p.ProductName</span>
-                    <img src="@p.ImageLink" />
-                    <span>giá: @p.Price</span>
-                </div>
-            }
-            <!--code -->
-            <div class="opacity-style"></div>
-            <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C7" class="button-34" id="NETWORK">Thiết bị mạng</a>
-        </div>
-        <div class="Bottom-catagory product-catagory">
-            @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C8")).OrderByDescending(x => x.Discount).Take(3))
-            {
-                <div class="intro-product">
-                    <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
-                    <span>@p.ProductName</span>
-                    <img src="@p.ImageLink" />
-                    <span>giá: @p.Price</span>
-                </div>
-            }
-            <!--code -->
-            <div class="opacity-style"></div>
-            <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C8" class="button-34" id="OFFICE">Thiết bị văn phòng</a>
-        </div>
+        <!--code -->
+        <div class="opacity-style"></div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C8" class="button-34" id="OFFICE">Thiết bị văn phòng</a>
+    </div>
 </body>
 </html>
 

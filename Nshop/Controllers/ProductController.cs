@@ -14,7 +14,7 @@ namespace Nshop.Controllers
         private NShopContext db=new NShopContext();
         public IActionResult Index()
         {
-            var products = db.Products;
+            IEnumerable<Nshop.Models.Products> products = db.Products;
             return View(products);
         }
         public ActionResult IndexProduct(string id)
@@ -54,6 +54,7 @@ namespace Nshop.Controllers
                 throw new ArgumentNullException();
             }
             Products product = db.Products.Find(id);
+            ViewBag.CatalogIDSelecting =product.CatalogId;
             if (product == null)
             {
                 return HttpNotFound();
@@ -61,6 +62,7 @@ namespace Nshop.Controllers
             var listproduct = db.Products.Where(x => x.CatalogId == product.CatalogId);
             db.Products.Remove(product);
             db.SaveChanges();
+  
             return View("IndexProduct", listproduct);
         }
         public ActionResult CreateForm(Products product,string id)
@@ -80,10 +82,17 @@ namespace Nshop.Controllers
                 db.Products.Add(pRODUCT);
                 await db.SaveChangesAsync();
                 var listproduct = db.Products.Where(x => x.CatalogId == pRODUCT.CatalogId);
+                ViewBag.CatalogIDSelecting = id;
                 return View("IndexProduct",listproduct);
             }
+            ViewBag.CatalogIDSelecting = id;
             ViewBag.CatalogId = new SelectList(db.Catalogs, "CatalogId", "CatalogName", pRODUCT.CatalogId);
             return View("AddProduct",pRODUCT);
+        }
+        public async Task<IActionResult> CartProduct()
+        {
+            //chưa có id, chỉ là file tĩnh
+            return View("CartProduct");
         }
         private ActionResult HttpNotFound()
         {

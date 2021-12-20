@@ -401,6 +401,7 @@
         }
 }
 .Tab-option-product {
+    z-index: auto;
     background-color:white;
     position: relative;
     width: 98%;
@@ -438,4 +439,33 @@
 }
 .order-button:hover{
     color: white !important;
+}
+#tab-tempory {
+    font-weight: 700;
+    font-family: Lucida Bright;
+    color: limegreen;
+    position: absolute;
+    left: 40%;
+    padding: 12px;
+    bottom: -63px;
+    z-index: -1;
+    background-color: white;
+    border: none;
+}
+@keyframes tab-tempory{
+    from{opacity:0;z-index:-1;bottom: -54px;}
+    to{opacity:0.9;z-index:9;bottom: -63px;}
+}
+@keyframes tab-tempory2 {/*Use toogle animation*/
+    from {
+        opacity: 0;
+        z-index: -1;
+        bottom: -45px;
+    }
+
+    to {
+        opacity: 0.9;
+        z-index: 9;
+        bottom: -63px;
+    }
 }

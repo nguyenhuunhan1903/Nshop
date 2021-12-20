@@ -17,21 +17,22 @@
     <div class="show-product">
         <div class="Tab-option-product">
             <div class="fillter-product">
-                <input type="text" class="search-product form-control" placeholder="Search Product ...." />
+                <input id="myInput" onkeyup="SearchDynamically()" type="text" class="search-product form-control" placeholder="Search Product ...." />
                 <a class="search-button btn btn-light"><i class="bi bi-search"></i></a>
                 <label>Sắp xếp theo: </label>
-                <select class="form-control" id="order-option">
-                    <option>Price</option>
+                <select onchange="optionSort()" class="form-control" id="order-option">
                     <option>Product name</option>
+                    <option>Price</option>
                     <option> Quantity</option>
                 </select>
-                <a class="btn btn-outline-secondary order-button" onclick="buttonOrderBy(this)"><i class="bi bi-caret-down"></i></a>
+                <a class="btn btn-outline-secondary order-button" onclick="buttonOrderBy(this)"><i class="bi bi-caret-up"></i></a>
             </div>
             <div class="modify-product">
                 <a asp-action="CreateForm" asp-route-id="@ViewBag.CatalogIDSelecting" class="btn btn-info add-button"><i class="bi bi-plus-circle-dotted"></i>Thêm</a>
             </div>
+            <div class="btn btn-outline-secondary"id="tab-tempory"><i class="bi bi-check-all"></i>Đã sắp xếp giảm</div>
         </div>
-        <ul class="flex-container wrap">
+        <ul id="myUL" class="flex-container wrap">
             @{
                 Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
@@ -68,6 +69,7 @@
 
                     </div>
                     <div class="item-price">@(item.Price-item.Price*((decimal)item.Discount/100)) VND </div>
+                    <div class="item-quanlity" hidden>@item.Quantity</div>
                     <hr class="line">
                     <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@item.ProductId" class="button-17 item-detail">Details</a>
                 </li>
@@ -88,12 +90,106 @@
         </div>
     </div>
     <script>
-        function buttonOrderBy(x) {
-            if (x.innerHTML == '<i class="bi bi-caret-down"></i>') {
-                x.innerHTML = '<i class="bi bi-caret-up"></i>';
+
+
+        var optionSorted = "item-title";
+        function optionSort() {
+            @*<option>Product name</option>
+                    <option>Price</option>
+                    <option> Quantity</option>*@
+            var x = document.getElementById("order-option");
+            var i = x.selectedIndex;
+            var temp = x.options[i].text;
+            if (temp == "Product name") {
+                optionSorted = "item-title";
+            }
+            else if (temp == "Price") {
+                optionSorted = "item-price";
+            }
+            else if (temp == "Quantity") {
+                optionSorted = "item-quanlity";
+            }
+        }
+        var tabTempory = document.getElementById("tab-tempory");
+
+            function buttonOrderBy(x) {
+                tabTempory.style.animation = "tab-tempory 0.6s";
+            if (x.innerHTML == '<i class="bi bi-caret-up"></i>') {
+                x.innerHTML = '<i class="bi bi-caret-down"></i>';
+                tabTempory.innerHTML = '<i class="bi bi-check-all"></i>Đã sắp xếp tăng';
+                tabTempory.style.animation = "tab-tempory 0.6s";
+               
             }
             else {
-                x.innerHTML = '<i class="bi bi-caret-down"></i>';
+                x.innerHTML = '<i class="bi bi-caret-up"></i>';
+                tabTempory.innerHTML = '<i class="bi bi-check-all"></i>Đã sắp xếp giảm';
+                tabTempory.style.animation = "tab-tempory2 0.6s";
+               
+            }
+        //sort decs and asc
+            let list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+            list = document.getElementById("myUL");
+            switching = true;
+            // Set the sorting direction to ascending:
+            dir = "asc";
+            // Make a loop that will continue until no switching has been done:
+            while (switching) {
+                // start by saying: no switching is done:
+                switching = false;
+                b = list.getElementsByTagName("li");
+                // Loop through all list-items:
+                for (i = 0; i < (b.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /* check if the next item should switch place with the current item,
+                    based on the sorting direction (asc or desc): */
+                    if (dir == "asc") {
+                        if (b[i].getElementsByClassName(optionSorted)[0].innerHTML.toLowerCase() > b[i + 1].getElementsByClassName(optionSorted)[0].innerHTML.toLowerCase()) {
+                            /* if next item is alphabetically lower than current item,
+                            mark as a switch and break the loop: */
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (b[i].getElementsByClassName(optionSorted)[0].innerHTML.toLowerCase() < b[i + 1].getElementsByClassName(optionSorted)[0].innerHTML.toLowerCase()) {
+                            /* if next item is alphabetically higher than current item,
+                            mark as a switch and break the loop: */
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /* If a switch has been marked, make the switch
+                    and mark that a switch has been done: */
+                    b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                    switching = true;
+                    // Each time a switch is done, increase switchcount by 1:
+                    switchcount++;
+                } else {
+                    /* If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again. */
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+        function SearchDynamically() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByClassName("item-title")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
             }
         }
     </script>

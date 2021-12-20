@@ -6,10 +6,18 @@
         <a asp-controller="Home" asp-action="OpenLogin" class="option btn btn-danger">Đăng nhập</a>
         <img id="icon-user" class="" src="~/img/avatar.jpg">
         <span class="name-user">Xin chào, user</span>
-        <a asp-controller="Home" asp-action="OpenProfile" class="option btn btn-light"><i class="bi bi-caret-down-fill"></i></a><!--Để tạm-->
-        <button class="cart option btn btn-outline-danger">
+        <div class="option btn btn-light open-profile">
+            <i class="bi bi-person-lines-fill"></i>
+            <div class="card-profile">
+                <a asp-controller="Home" asp-action="OpenProfile" class="btn btn-primary">Thông tin tài khoản</a>
+                <a class="btn btn-warning">Lịch sủ đặt hàng</a>
+                <a class="btn btn-danger">Đăng xuất</a>
+            </div>
+           
+        </div><!--Để tạm-->
+        <a asp-controller="Product" asp-action="CartProduct" class="cart option btn btn-outline-danger">
             <i class="bi bi-cart-fill"></i>
             <div class="number-order">0</div>
-        </button>
+        </a>
     </div>
 </div>

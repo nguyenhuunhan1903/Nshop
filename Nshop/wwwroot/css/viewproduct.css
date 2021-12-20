@@ -7,6 +7,7 @@
 }
 
 .btn-customer{
+    cursor:pointer;
     padding: 9px;
     margin: 9px;
     font-size: 18px;
@@ -32,13 +33,26 @@
 }
 
 .image {
+    overflow: hidden;
+    position: relative;
     margin-top: 45px;
     padding: 12px;
     width: 270px;
     height: 270px;
     border-radius: 21px;
 }
-
+    .image span {
+        padding: 9px;
+        position: absolute;
+        background-color: red;
+        top: 21px;
+        color: white;
+        transform: rotate(-45deg);
+        text-align: center;
+        width: 180px;
+        font-size: large;
+        left: -42px;
+    }
     .image img {
         width: 261px;
         height: 261px;
@@ -60,11 +74,11 @@
 }
 
 .row-1-product .col-1-product {
-    flex-basis: 30%;
+    flex-basis: 40%;
 }
 
 .row-1-product .col-2-product {
-    flex-basis: 70%;
+    flex-basis: 60%;
 }
 
 .title-product .introduction-product {
@@ -268,3 +282,72 @@
     font-size: 14px;
     font-weight:600;
 }
+/*Button tăng giảm số lượng sản phẩm*/
+.quantity-number {
+    position: absolute;
+    top: 96px;
+    left: 160px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.quantity-number input {
+    width: 63px;
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    border: 1px solid #eee;
+}
+
+    .quantity-number input:focus {
+        outline: 0;
+    }
+
+.quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+}
+
+.quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .quantity-button.quantity-up {
+        position: absolute;
+        height: 50%;
+        top: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .quantity-button.quantity-down {
+        position: absolute;
+        bottom: -1px;
+        height: 50%;
+    }

@@ -1,0 +1,76 @@
+﻿@model Nshop.Models.Products
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutNShop.cshtml";
+}
+
+<h1>AddProduct</h1>
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateProduct" asp-route-id="@ViewBag.CatalogIDSelecting">
+            @{ 
+               
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <input asp-for="ProductId" class="form-control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatalogId" class="control-label">Catalog Name:</label>
+                @*<label>@ViewBag.CatalogIDSelecting</label>*@
+                <input class="form-control" value="@ViewBag.CatalogName"  disabled/>
+                <input type="hidden" value="@ViewBag.CatalogIDSelecting" asp-for="CatalogId"/>
+               @* <select asp-for="CatalogId" class ="form-control" asp-items="ViewBag.CatalogId"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descriptions" class="control-label"></label>
+                <textarea rows="6" cols="60" asp-for="Descriptions" class="form-control"></textarea>
+                <span asp-validation-for="Descriptions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageLink" class="control-label"></label>
+                <input asp-for="ImageLink" class="form-control" />
+                <span asp-validation-for="ImageLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Detail" class="control-label"></label>
+                <input asp-for="Detail" class="form-control" />
+                <span asp-validation-for="Detail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+    
+<div>
+    <a asp-action="IndexProduct" asp-route-id="@ViewBag.CatalogIDSelecting">Back to List</a><!--Chưa ra sản phẩm vì nếu mình không save lại thì model này sẽ null-->
+</div>
+

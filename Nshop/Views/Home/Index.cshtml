@@ -1,0 +1,208 @@
+﻿@model IEnumerable<Nshop.Models.Products>
+@{
+    ViewData["Title"] = "Home Page";
+    //chú ý truy vấn where khi so sánh với id, id có 4 ký tự, nếu mình so sánh với chuỗi "C1" vẫn được coi là sai, phải dùng startwith
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/HomeNshop.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="wrapper">
+        <input checked type=radio name="slider" id="slide1" />
+        <input type=radio name="slider" id="slide2" />
+        <input type=radio name="slider" id="slide3" />
+        <input type=radio name="slider" id="slide4" />
+        <input type=radio name="slider" id="slide5" />
+
+        <div class="slider-wrapper">
+            <div class=inner>
+                <article>
+                    <div class="info top-left">
+                        <h3>Cấu hình PC mạnh mẽ</h3>
+                    </div>
+                    <img src="https://trangnguyencantho.com/wp-content/uploads/2020/10/bia-3-800x600.png" />
+                </article>
+
+                <article>
+                    <div class="info bottom-right">
+                        <h3>Laptop hiệu năng cao</h3>
+                    </div>
+                    <img src="https://cafefcdn.com/203337114487263232/2021/12/9/-16390426362341647851188.jpg" />
+                </article>
+
+                <article>
+                    <div class="info bottom-left">
+                        <h3>Tai nghe Razor cực chất</h3>
+                    </div>
+                    <img src="http://gearshop.vn/upload/files/catalog/Headphone/Razer/Nari%20Ultimate/5.jpg" />
+                </article>
+
+                <article>
+                    <div class="info top-right">
+                        <h3>Bàn phím & Chuột bền bỉ</h3>
+                    </div>
+                    <img src="https://cdn1.dotesports.com/wp-content/uploads/2021/10/18115831/razersdsd-1.jpg" />
+                </article>
+
+                <article>
+                    <div class="info bottom-left">
+                        <h3 style="color: black">Phần mềm chính hãng</h3>
+                    </div>
+                    <img src="https://hathanhpc.com/image/catalog/phan-mem-ban-quyen/windows-10-home-32-bit-64-bit-all-languages-kw9-0-c-1.jpg" />
+                </article>
+            </div>
+            <!-- .inner -->
+        </div>
+        <!-- .slider-wrapper -->
+
+        <div class="slider-prev-next-control">
+            <label for=slide1></label>
+            <label for=slide2></label>
+            <label for=slide3></label>
+            <label for=slide4></label>
+            <label for=slide5></label>
+        </div>
+        <!-- .slider-prev-next-control -->
+
+        <div class="slider-dot-control">
+            <label for=slide1></label>
+            <label for=slide2></label>
+            <label for=slide3></label>
+            <label for=slide4></label>
+            <label for=slide5></label>
+        </div>
+        <!-- .slider-dot-control -->
+    </div>
+    <div class="Bottom-catagory">
+        <a class="btn btn-light" href="#PC">PC</a>
+        <a class="btn btn-light" href="#LAPTOP">Laptop</a>
+        <a class="btn btn-light" href="#MONITOR">Màn hình</a>
+        <a class="btn btn-light" href="#KEYBROAD">Bàn phím</a>
+        <a class="btn btn-light" href="#MOUSE">Chuột</a>
+        <a class="btn btn-light" href="#HEADPHONE">Tai nghe</a>
+        <a class="btn btn-light" href="#NETWORK">Thiết bị mạng</a>
+        <a class="btn btn-light" href="#OFFICE">Thiết bị văn phòng</a>
+    </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C2")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <div class="opacity-style">
+
+        </div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C2" class="button-34" id="PC">PC</a>
+    </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C1")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <!--code -->
+        <div class="opacity-style"></div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C1" class="button-34" id="LAPTOP">Laptop</a>
+    </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C3")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <!--code -->
+        <div class="opacity-style"></div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C3" class="button-34" id="MONITOR">Màn hình</a>
+    </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C4")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <div class="opacity-style">
+
+        </div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C4" class="button-34" id="KEYBROAD">Bàn phím</a>
+        </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C5")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <div class="opacity-style">
+
+        </div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C5" class="button-34" id="MOUSE">Chuột</a>
+        </div>
+    <div class="Bottom-catagory product-catagory">
+        @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C6")).OrderByDescending(x => x.Discount).Take(3))
+        {
+            <div class="intro-product">
+                <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                <span>@p.ProductName</span>
+                <img src="@p.ImageLink" />
+                <span>giá: @p.Price</span>
+            </div>
+        }
+        <div class="opacity-style">
+
+        </div>
+        <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C6" class="button-34" id="HEADPHONE">Tai nghe</a>
+        </div>
+        <div class="Bottom-catagory product-catagory">
+            @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C7")).OrderByDescending(x => x.Discount).Take(3))
+            {
+                <div class="intro-product">
+                    <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                    <span>@p.ProductName</span>
+                    <img src="@p.ImageLink" />
+                    <span>giá: @p.Price</span>
+                </div>
+            }
+            <!--code -->
+            <div class="opacity-style"></div>
+            <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C7" class="button-34" id="NETWORK">Thiết bị mạng</a>
+        </div>
+        <div class="Bottom-catagory product-catagory">
+            @foreach (var p in Model.Where(x => x.Quantity > 0 && x.CatalogId.StartsWith("C8")).OrderByDescending(x => x.Discount).Take(3))
+            {
+                <div class="intro-product">
+                    <a asp-controller="Product" asp-action="DetailProduct" asp-route-id="@p.ProductId" class="product-detail"></a>
+                    <span>@p.ProductName</span>
+                    <img src="@p.ImageLink" />
+                    <span>giá: @p.Price</span>
+                </div>
+            }
+            <!--code -->
+            <div class="opacity-style"></div>
+            <a asp-controller="Product" asp-action="IndexProduct" asp-route-id="C8" class="button-34" id="OFFICE">Thiết bị văn phòng</a>
+        </div>
+</body>
+</html>
+

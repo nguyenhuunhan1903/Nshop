@@ -1,0 +1,352 @@
+﻿.main-view {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: inherit;
+}
+
+.btn-customer{
+    cursor:pointer;
+    padding: 9px;
+    margin: 9px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white !important;
+    width: 120px;
+}
+.View-product {
+    padding: 10px;
+    display: flex;
+    background-color: #efefef;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 54px;
+}
+
+.detail-product button {
+    padding: 12px;
+    margin: 10px;
+    width: 120px;
+}
+
+.image {
+    overflow: hidden;
+    position: relative;
+    margin-top: 45px;
+    padding: 12px;
+    width: 270px;
+    height: 270px;
+    border-radius: 21px;
+}
+    .image span {
+        padding: 9px;
+        position: absolute;
+        background-color: red;
+        top: 21px;
+        color: white;
+        transform: rotate(-45deg);
+        text-align: center;
+        width: 180px;
+        font-size: large;
+        left: -42px;
+    }
+    .image img {
+        width: 261px;
+        height: 261px;
+        border-radius: 27px;
+        padding: 12px;
+    }
+
+.row-1-product {
+    height: 420px;
+    display: flex;
+    flex-basis: 30%;
+    flex-direction: row;
+}
+
+.row-2-product {
+    display: flex;
+    flex-basis: 70%;
+    flex-direction: row;
+}
+
+.row-1-product .col-1-product {
+    flex-basis: 40%;
+}
+
+.row-1-product .col-2-product {
+    flex-basis: 60%;
+}
+
+.title-product .introduction-product {
+    overflow-y: scroll;
+    width: inherit;
+    height: 300px;
+    border: 1px solid grey;
+    padding: 12px;
+}
+
+.title-product .product-name {
+    padding: 12px;
+    margin-left: 21px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.detail-product .property-product {
+    padding: 9px;
+    margin: 5px;
+    font-size: 12px;
+    width: 360px;
+    border: 1px solid grey;
+}
+
+.detail-product .title-detail {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 21px;
+}
+.info-product{
+    position:relative;
+}
+.info-product .content-info {
+    padding: 9px;
+    margin: 5px;
+    font-size: 12px;
+    width: inherit;
+    height: 180px;
+    border: 1px solid grey;
+    overflow-y: auto;
+}
+
+.info-product .title-info {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 21px;
+    padding: 12px;
+}
+
+.row-2-product .col-1-product {
+    flex-basis: 50%;
+}
+
+.row-2-product .col-2-product {
+    flex-basis: 50%;
+}
+
+.price {
+    font-size: 21px;
+    color: red;
+    font-weight: bold;
+    padding: 6px;
+}
+
+.info-product button {
+    padding: 12px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.sub-introduction-product {
+    padding: 3px;
+    font-size: 16px;
+    margin-left: 12px;
+}
+
+.row-property {
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+    .row-property .name-property:hover{
+        background-color: gray;
+    }
+    .row-property .name-property {
+        display: inline-block;
+        width: 30%;
+        font-weight: bold;
+        background-color: #ffffff;
+        font-size: 14px;
+        border-right: 3px solid #001e53;
+        padding: 3px;
+    }
+
+    .row-property .value-property {
+        float: right;
+        width: 70%;
+        font-size: 14px;
+        background: #ffffff;
+        border-right: 3px solid #001e53;
+        padding: 3px 9px;
+    }
+        .row-property .value-property:hover {
+            background-color: gray;
+        }
+        .content-info {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.button-45 {
+
+    align-items: center;
+    background-color: #FFE7E7;
+    background-position: 0 0;
+    border: 1px solid #FEE0E0;
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: #D33A2C;
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 33.4929px;
+    list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg) none;
+    padding: 2px 12px;
+    text-align: left;
+    text-decoration: none;
+    text-shadow: none;
+    text-underline-offset: 1px;
+    transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    word-break: break-word;
+    position:absolute;
+    right: 0;
+}
+
+.button-45:active,
+.button-45:hover,
+.button-45:focus {
+    outline: 0;
+}
+
+
+.button-45:active {
+    background-color: #D33A2C;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+    color: #FFFFFF;
+}
+
+.button-45:hover {
+    background-color: #FFE3E3;
+    border-color: #FAA4A4;
+}
+
+.button-45:active:hover,
+.button-45:focus:hover,
+.button-45:focus {
+    background-color: #D33A2C;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+    color: #FFFFFF;
+}
+
+.button-39 {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(209,213,219);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .75rem 1rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-39:hover {
+    background-color: rgb(249,250,251);
+}
+
+.button-39:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.button-39:focus-visible {
+    box-shadow: none;
+}
+.quanlity-report{
+    margin-left: 21px;
+    font-size: 14px;
+    font-weight:600;
+}
+/*Button tăng giảm số lượng sản phẩm*/
+.quantity-number {
+    position: absolute;
+    top: 96px;
+    left: 160px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.quantity-number input {
+    width: 63px;
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    border: 1px solid #eee;
+}
+
+    .quantity-number input:focus {
+        outline: 0;
+    }
+
+.quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+}
+
+.quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .quantity-button.quantity-up {
+        position: absolute;
+        height: 50%;
+        top: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .quantity-button.quantity-down {
+        position: absolute;
+        bottom: -1px;
+        height: 50%;
+    }

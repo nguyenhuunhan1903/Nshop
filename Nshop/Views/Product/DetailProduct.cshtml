@@ -1,0 +1,133 @@
+﻿@model Nshop.Models.Products
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Sản phẩm</title>
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+        <!-- Optional theme -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+        <!-- Latest compiled and minified JavaScript -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+        <link rel="stylesheet" href="~/css/viewproduct.css" type="text/css">
+    </head>
+    <body>
+        @{    
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            try
+            {
+                dictionary = Model.Detail.TrimEnd(';').Split(';').ToDictionary(item => item.Split('=')[0], item => item.Split('=')[1]);
+            } catch (Exception e)
+            {
+                dictionary = null;
+            }
+            var priceDiscount = Model.Price - Model.Price * (((decimal)Model.Discount) / 100);
+
+
+}
+        <div class="main-view">
+            <div class="View-product">
+                <div class="row-1-product">
+                    <div class="image col-1-product">
+                        @if (Model.Discount >= 35)
+                        {
+                            <span>Sale</span>
+                        }
+                        <img src="@Model.ImageLink" />
+                    </div>
+                    <div class="title-product col-2-product">
+                        <div class="product-name">@Model.ProductName</div>
+                        <div class="introduction-product">
+                            @Model.Descriptions
+                        </div>
+                    </div>
+                </div>
+                <div class="row-2-product">
+                    <div class="detail-product col-1-product">
+                        <div class="title-detail">Thông tin chi tiết</div>
+                        <div class="property-product">
+                        @if (dictionary != null)
+                        {
+                            @foreach (var item in dictionary)
+                            {
+                            <div class="row-property">
+                                <div class="name-property">@item.Key</div>
+                                <div class="value-property">@item.Value</div>
+                            </div>
+                            }
+                        }
+                        </div>
+                        <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId" class="btn btn-success btn-customer">Sửa</a>
+                        <a asp-action="DeleteProduct" asp-route-id="@Model.ProductId" class="btn btn-danger btn-customer" onclick = "return confirm('Bạn có muốn xóa sản phẩm @Model.ProductName');" >Xóa</a>
+                    </div>
+                    <div class="info-product col-2-product">
+                        <div class="quantity-number">
+                            @{ 
+                                int? max = Model.Quantity >= 12 ? 12 : Model.Quantity;
+                            }
+                            @if (Model.Quantity>0) {
+                            <input type="number" min="1" max="@max" step="1" value="1">
+                            }
+                        </div>
+                        <button class="button-45">@Model.Discount %</button>
+                        <div class="price" style="text-decoration:line-through;">Giá:@Model.Price VND</div>
+                        <div class="price">Giá:@priceDiscount VND</div>
+
+                        @if (Model.Quantity == 0)
+                        {
+                            <button class="button-39">Hết hàng</button>
+                        }
+                        else
+                        {
+                            @if (Model.Quantity <= 6)
+                            {
+                                <div class="quanlity-report">Còn lại @Model.Quantity sản phẩm</div>
+                            }
+                            <a class="btn btn-info btn-customer">Đặt hàng</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+
+                jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity-number input');
+                jQuery('.quantity-number').each(function () {
+                    var spinner = jQuery(this),
+                        input = spinner.find('input[type="number"]'),
+                        btnUp = spinner.find('.quantity-up'),
+                        btnDown = spinner.find('.quantity-down'),
+                        min = input.attr('min'),
+                        max = input.attr('max');
+
+                    btnUp.click(function () {
+                        var oldValue = parseFloat(input.val());
+                        if (oldValue >= max) {
+                            var newVal = oldValue;
+                        } else {
+                            var newVal = oldValue + 1;
+                        }
+                        spinner.find("input").val(newVal);
+                        spinner.find("input").trigger("change");
+                    });
+
+                    btnDown.click(function () {
+                        var oldValue = parseFloat(input.val());
+                        if (oldValue <= min) {
+                            var newVal = oldValue;
+                        } else {
+                            var newVal = oldValue - 1;
+                        }
+                        spinner.find("input").val(newVal);
+                        spinner.find("input").trigger("change");
+                    });
+
+                });
+              
+            });
+        </script>
+    </body>
+</html>

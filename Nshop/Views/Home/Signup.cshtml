@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Signupcss.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+</head>
+    <body>
+        <div class="form_wrapper">
+            <div class="form_container">
+                <div class="title_container">
+                    <h2>Please sign up!</h2>
+                </div>
+                <div class="row clearfix">
+                    <div class="">
+                        <form>
+                            <div class="row clearfix">
+                                <div class="col_half">
+                                    <div class="input_field">
+                                        <span><i class="bi bi-person-fill"></i></span>
+                                        <input type="text" name="name" placeholder="First Name" />
+                                    </div>
+                                </div>
+                                <div class="col_half">
+                                    <div class="input_field">
+                                        <span><i class="bi bi-person-fill"></i></span>
+                                        <input type="text" name="name" placeholder="Last Name" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_field">
+                                <span><i class="bi bi-envelope-plus-fill"></i></span>
+                                <input type="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="input_field">
+                                <span><i class="bi bi-lock-fill"></i></span>
+                                <input type="password" name="password" placeholder="Password" required />
+                            </div>
+                            <div class="input_field">
+                                <span><i aria-hidden="true" class="bi bi-lock-fill"></i></span>
+                                <input type="password" name="password" placeholder="Re-type Password" required />
+                            </div>
+                            <div class="input_field">
+                                <span><i class="bi bi-phone-fill"></i></span>
+                                <input type="number" name="numberPhone" placeholder="Number phone" required />
+                            </div>
+                            <div class="input_field">
+                                <span><i class="bi bi-envelope-plus-fill"></i></span>
+                                <textarea name="address" placeholder="Address" rows="6" cols="45" required></textarea>
+                            </div>
+                            <br />
+                            <div class="input_field checkbox_option">
+                                <input type="checkbox" id="cb1">
+                                <label for="cb1">I agree with terms and conditions</label>
+                            </div>
+                            <div class="input_field checkbox_option">
+                                <input type="checkbox" id="cb2">
+                                <label for="cb2">I want to receive the newsletter</label>
+                            </div>
+                            <input class="button" type="submit" value="Register" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

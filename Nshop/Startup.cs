@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nshop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,20 @@ namespace Nshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            //services register and login
+            services.AddIdentity<AppUser, AppRole>(
+                options =>
+                {
+                    options.User.RequireUniqueEmail = false;
+                    options.SignIn.RequireConfirmedAccount = false;
+                   
+                }).AddEntityFrameworkStores<NShopContext>();
+            string connectionString = Configuration.GetConnectionString("ConnectionString");
+            services.AddDbContext<NShopContext>(c => c.UseSqlServer(connectionString));
+
+
             services.AddControllersWithViews();
         }
 
@@ -43,7 +60,7 @@ namespace Nshop
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

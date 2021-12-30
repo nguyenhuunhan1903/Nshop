@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nshop.Models;
 
 namespace Nshop.Migrations
 {
     [DbContext(typeof(NShopContext))]
-    partial class NShopContextModelSnapshot : ModelSnapshot
+    [Migration("20211230004804_AddAddressColumnIntoAppUser")]
+    partial class AddAddressColumnIntoAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

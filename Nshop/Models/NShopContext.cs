@@ -27,7 +27,7 @@ namespace Nshop.Models
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
-
+        public virtual DbSet<AppUser> AppUsers { get; set; }//thêm vào bảng để thuận tiện truy vấn dữ liệu
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -50,6 +50,7 @@ namespace Nshop.Models
                 entity.Property(x => x.FirstName).HasMaxLength(50).IsRequired();
                 entity.Property(x => x.LastName).HasMaxLength(50).IsRequired();
                 entity.Property(x => x.Dob).IsRequired();
+                entity.Property(x => x.address).HasColumnName("Address");
 
             });
             modelBuilder.Entity<AppRole>(entity =>

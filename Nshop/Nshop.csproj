@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20211223071513_IdentityFirstConfigure.cs" />
     <Compile Remove="Migrations\20211223071513_IdentityFirstConfigure.Designer.cs" />
+    <Compile Remove="Migrations\20220101125102_ChangeTypeTransactionAndOrder.cs" />
+    <Compile Remove="Migrations\20220101125102_ChangeTypeTransactionAndOrder.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

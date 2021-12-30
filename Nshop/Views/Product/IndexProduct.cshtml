@@ -28,7 +28,10 @@
                 <a class="btn btn-outline-secondary order-button" onclick="buttonOrderBy(this)"><i class="bi bi-caret-up"></i></a>
             </div>
             <div class="modify-product">
+                @if (SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin")
+                {
                 <a asp-action="CreateForm" asp-route-id="@ViewBag.CatalogIDSelecting" class="btn btn-info add-button"><i class="bi bi-plus-circle-dotted"></i>Thêm</a>
+                }
             </div>
             <div class="btn btn-outline-secondary"id="tab-tempory"><i class="bi bi-check-all"></i>Đã sắp xếp giảm</div>
         </div>

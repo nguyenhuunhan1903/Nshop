@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nshop.Models;
 
 namespace Nshop.Migrations
 {
     [DbContext(typeof(NShopContext))]
-    partial class NShopContextModelSnapshot : ModelSnapshot
+    [Migration("20211230004804_AddAddressColumnIntoAppUser")]
+    partial class AddAddressColumnIntoAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,7 +151,7 @@ namespace Nshop.Migrations
                         new
                         {
                             Id = new Guid("4e1cae6d-4d76-4311-9b2a-ed8cd3eea0e6"),
-                            ConcurrencyStamp = "93cf21e2-5dc9-44e1-a4d5-099d59ffc355",
+                            ConcurrencyStamp = "3893994e-ba22-4476-bbf4-efc31ff57993",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -230,7 +232,7 @@ namespace Nshop.Migrations
                         {
                             Id = new Guid("d8c2beb7-0552-42ff-844d-fbc499398a37"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "61e4797f-5c89-4196-aa2d-d5086a4761e9",
+                            ConcurrencyStamp = "0039d654-69a6-4e09-a5c2-4fdbe90a23a5",
                             Dob = new DateTime(2001, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nguyenhuunhan1903@gmail.com",
                             EmailConfirmed = true,
@@ -239,7 +241,7 @@ namespace Nshop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "nguyenhuunhan1903@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHUijxtboIz59TrZXFZxozUzz5bfWMPZoaWm+Po1SL7wNZy/lMy0hzMOgKR/5Z/gQw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEVO/8uGgVGN/qOKTedtefE6xVb21cy4FHlq2VMcBkRrCLJxbWm0QS8OrZ9cNNCmQQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -384,11 +386,11 @@ namespace Nshop.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<bool>("Payment")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Payment")
                         .HasColumnName("PAYMENT")
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("varchar(32)")
+                        .HasMaxLength(32)
+                        .IsUnicode(false);
 
                     b.Property<Guid>("Userid")
                         .HasColumnType("uniqueidentifier");

@@ -18,7 +18,7 @@ namespace Nshop.Models
         public decimal? Amount { get; set; }
         public string MessageT { get; set; }
         public DateTime? CreateDay { get; set; }
-        public string Payment { get; set; }
+        public bool Payment { get; set; }
         public Guid Userid { get; set; }
         public AppUser AppUser { get; set; }
 

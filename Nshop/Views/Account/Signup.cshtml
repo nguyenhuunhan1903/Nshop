@@ -1,0 +1,78 @@
+﻿@model Nshop.ViewModels.RegisterViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Signupcss.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="form_wrapper">
+        <div class="form_container">
+            <div class="title_container">
+                <h2>sign up!</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="">
+                    <form method="post" asp-controller="Account" asp-action="Register">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row clearfix">
+                            <div class="col_half">
+                                <div class="input_field">
+                                    <span><i class="bi bi-person-fill"></i></span>
+                                    <input asp-for="FirstName" placeholder="First Name" />
+                                </div>
+                            </div>
+                            <div class="col_half">
+                                <div class="input_field">
+                                    <span><i class="bi bi-person-fill"></i></span>
+                                    <input asp-for="LastName" placeholder="Last Name" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input_field">
+                            <span><i class="bi bi-envelope-plus-fill"></i></span>
+                            <input asp-for="Email" placeholder="Email..." required />
+
+                        </div>
+
+                        <div class="input_field">
+                            <span><i class="bi bi-lock-fill"></i></span>
+                            <input asp-for="Password" placeholder="Password" required />
+                        </div>
+
+                        <div class="input_field">
+                            <span><i aria-hidden="true" class="bi bi-lock-fill"></i></span>
+                            <input asp-for="ConfirmPassword" placeholder="Re-type Password" required />
+                        </div>
+
+                        <div class="input_field">
+                            <span><i class="bi bi-phone-fill"></i></span>
+                            <input asp-for="NumberPhone" name="numberPhone" placeholder="Number phone" required />
+                        </div>
+                        <div class="input_field">
+                            <span><i class="bi bi-calendar-week"></i></span>
+                            <input asp-for="dob" />
+                        </div>
+                        <div class="input_field">
+                            <span><i class="bi bi-envelope-plus-fill"></i></span>
+                            <textarea asp-for="address" name="address" placeholder="Address" rows="6" cols="36"></textarea>
+                        </div>
+                        <br />
+                        <div class="input_field checkbox_option">
+                            <input type="checkbox" id="cb1" required>
+                            <label for="cb1">I agree with terms and conditions</label>
+                        </div>
+                        <div class="input_field checkbox_option">
+                            <input type="checkbox" id="cb2" required>
+                            <label for="cb2">I want to receive the newsletter</label>
+                        </div>
+                        <input onclick="validationReport()" class="button" type="submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

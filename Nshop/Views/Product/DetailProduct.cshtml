@@ -48,20 +48,23 @@
                     <div class="detail-product col-1-product">
                         <div class="title-detail">Thông tin chi tiết</div>
                         <div class="property-product">
-                        @if (dictionary != null)
-                        {
-                            @foreach (var item in dictionary)
+                            @if (dictionary != null)
                             {
-                            <div class="row-property">
-                                <div class="name-property">@item.Key</div>
-                                <div class="value-property">@item.Value</div>
-                            </div>
-                            }
-                        }
+                    @foreach (var item in dictionary)
+                    {
+                    <div class="row-property">
+                        <div class="name-property">@item.Key</div>
+                        <div class="value-property">@item.Value</div>
+                    </div>}}
                         </div>
-                        <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId" class="btn btn-success btn-customer">Sửa</a>
-                        <a asp-action="DeleteProduct" asp-route-id="@Model.ProductId" class="btn btn-danger btn-customer" onclick = "return confirm('Bạn có muốn xóa sản phẩm @Model.ProductName');" >Xóa</a>
+                        @if (SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin")
+                        {
+                    <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId" class="btn btn-success btn-customer">Sửa</a>
+                        <a asp-action="DeleteProduct" asp-route-id="@Model.ProductId" class="btn btn-danger btn-customer" onclick="return confirm('Bạn có muốn xóa sản phẩm @Model.ProductName');">Xóa</a>
+                        }
                     </div>
+
+
                     <div class="info-product col-2-product">
                         <div class="quantity-number">
                             @{ 

@@ -2,7 +2,7 @@
 ## 1.Giới thiệu: 
    - Thành viên làm bài: Nguyễn Hữu Nhân
    - Đề tài: Phần mềm quản lý thiết bị điện tử và máy tính NShop
-   - Công nghệ sử dụng: ASP.NET Core 3.1, Mvc , EntityFrameworkCore, Flutent Api(Cập nhật từ ứng dụng xuống database).
+   - Công nghệ sử dụng: ASP.NET Core 3.1, Mvc , EntityFrameworkCore, Fluent Api(Cập nhật từ ứng dụng xuống database).
 ## 2.Các công việc đã hoàn thành:
 - Đã thiết kế xong database và đưa dữ liệu lên ứng dụng
 - Chức năng đăng ký và đăng nhập, đăng xuất bằng identity

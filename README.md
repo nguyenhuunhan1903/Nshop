@@ -10,8 +10,10 @@
 - Có chức năng thêm sửa xóa sản phẩm
 - Chức năng tìm, sắp xếp theo thuộc tính của sản phẩm bằng Javascript(Phía Client)
 - Xem được thông tin tài khoản đã đăng nhập.
+- Sửa được thông tin tài khoản.
 - Xây dựng chức năng phân quyền mức cơ bản(quyền quản trị và quyền khách hàng)
 ## 3.Công việc chưa hoàn thành:
- - Chưa sửa được thông tin tài khoản
- - Chưa hoàn thành chức năng thanh toán giỏ hàng
+ - Chưa thiết kế phần quản lý quyền các tài khoản.
+ - Chưa hoàn thành chức năng thanh toán giỏ hàng.
+ - Chưa hoàn thành chức năng lịch sử đặt hàng.
 - **(Đang làm ở nhánh New Master...)**

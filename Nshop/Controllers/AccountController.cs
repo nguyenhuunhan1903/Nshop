@@ -21,7 +21,6 @@ namespace Nshop.Controllers
         //constructor sample
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-     
 
         public AccountController(UserManager<AppUser> userManager,
                                       SignInManager<AppUser> signInManager)

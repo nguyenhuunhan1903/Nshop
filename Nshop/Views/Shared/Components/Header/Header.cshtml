@@ -22,7 +22,7 @@
         </div><!--Để tạm-->
         @if (SignInManager.IsSignedIn(User))
         {
-            <a asp-controller="Product" asp-action="ViewCartProduct" asp-route-idUser="@UserManager.GetUserAsync(User).Result.Id" class="cart option btn btn-outline-danger">
+            <a asp-controller="Cart" asp-action="ViewCartProduct" asp-route-idUser="@UserManager.GetUserAsync(User).Result.Id" class="cart option btn btn-outline-danger">
                 <i class="bi bi-cart-fill"></i>
                 <div class="number-order">0</div>
             </a>
